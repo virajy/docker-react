@@ -1,0 +1,22 @@
+version: '3'
+services: 
+    web:
+        build: 
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        volumes:
+            - /app/node_modules #ignores files
+            - .:/app #includes file volumes is to point local project folder
+    
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules #ignores files
+            - .:/app #includes file volumes is to point local project folder
+        command: ["npm", "run", "test"]      
+
+            
